@@ -9,6 +9,7 @@ Group:		Networking/Daemons/HTTP
 Source0:	https://github.com/graylog-labs/apache-mod_log_gelf/archive/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	4aba4fd0f8e1175c39d4ac236282df10
 Source1:	apache.conf
+Patch0:		build.patch
 URL:		https://github.com/graylog-labs/apache-mod_log_gelf
 BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.2
@@ -24,6 +25,7 @@ Apache2 module for writing access logs to Graylog.
 
 %prep
 %setup -q -n apache-mod_log_gelf-%{version}
+%patch0 -p1
 
 %build
 %{__make} -C src
