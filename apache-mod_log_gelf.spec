@@ -13,7 +13,9 @@ Patch0:		build.patch
 URL:		https://github.com/graylog-labs/apache-mod_log_gelf
 BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.2
+BuildRequires:	json-c-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	zlib-devel
 Requires:	apache(modules-api) = %apache_modules_api
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
