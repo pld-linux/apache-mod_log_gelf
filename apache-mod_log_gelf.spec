@@ -3,7 +3,7 @@
 Summary:	Apache2 module for writing access logs to Graylog
 Name:		apache-mod_%{mod_name}
 Version:	0.2.0
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Networking/Daemons/HTTP
 Source0:	https://github.com/graylog-labs/apache-mod_log_gelf/archive/%{version}/%{name}-%{version}.tar.gz
@@ -30,12 +30,14 @@ Apache2 module for writing access logs to Graylog.
 %patch0 -p1
 
 %build
-%{__make} -C src
+%{__make} -C src \
+	APXS=%{apxs}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}}
 %{__make} -C src install \
+	APXS=%{apxs} \
 	DESTDIR=$RPM_BUILD_ROOT
 
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/90_mod_%{mod_name}.conf
