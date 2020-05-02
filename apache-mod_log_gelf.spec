@@ -1,11 +1,13 @@
 %define		mod_name	log_gelf
 %define 	apxs		%{_sbindir}/apxs
-Summary:	Apache2 module for writing access logs to Graylog
+Summary:	Apache 2 module for writing access logs to Graylog
+Summary(pl.UTF-8):	Moduł Apache'a 2 zapisujący logi dostępowe do Grayloga
 Name:		apache-mod_%{mod_name}
 Version:	0.2.0
-Release:	3
+Release:	4
 License:	Apache v2.0
 Group:		Networking/Daemons/HTTP
+#Source0Download: https://github.com/graylog-labs/apache-mod_log_gelf/releases
 Source0:	https://github.com/graylog-labs/apache-mod_log_gelf/archive/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	4aba4fd0f8e1175c39d4ac236282df10
 Source1:	apache.conf
@@ -23,7 +25,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_sysconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)/conf.d
 
 %description
-Apache2 module for writing access logs to Graylog.
+Apache 2 module for writing access logs to Graylog.
+
+%description -l pl.UTF-8
+Moduł Apache'a 2 zapisujący logi dostępowe do Grayloga.
 
 %prep
 %setup -q -n apache-mod_log_gelf-%{version}
@@ -36,6 +41,7 @@ Apache2 module for writing access logs to Graylog.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}}
+
 %{__make} -C src install \
 	APXS=%{apxs} \
 	DESTDIR=$RPM_BUILD_ROOT
