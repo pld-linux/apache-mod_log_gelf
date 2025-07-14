@@ -32,7 +32,7 @@ Moduł Apache'a 2 zapisujący logi dostępowe do Grayloga.
 
 %prep
 %setup -q -n apache-mod_log_gelf-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__make} -C src \
